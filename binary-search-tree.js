@@ -42,13 +42,23 @@ class BinarySearchTree {
     }
   }
 
-  depthFirstTraversal(cb) {
-    if (this.left) {
-      this.left.depthFirstTraversal(cb);
+  // cb = callback function to execute on each node.
+  // order = order to traverse tree. Accepts 'in-order', 'pre-order', 'post-order'
+  depthFirstTraversal(cb, order) {
+    if (order === 'pre-order') {
+      cb(this.value);
     }
-    cb(this.value);
+    if (this.left) {
+      this.left.depthFirstTraversal(cb, order);
+    }
+    if (order === 'in-order') {
+      cb(this.value);
+    }
     if (this.right) {
-      this.right.depthFirstTraversal(cb);
+      this.right.depthFirstTraversal(cb, order);
+    }
+    if (order === 'post-order') {
+      cb(this.value);
     }
   }
 }
@@ -67,4 +77,4 @@ bst.insert(85);
 bst.insert(105);
 bst.insert(10);
 
-bst.depthFirstTraversal(console.log)
+bst.depthFirstTraversal(console.log, 'post-order')
