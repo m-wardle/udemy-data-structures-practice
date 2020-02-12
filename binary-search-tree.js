@@ -74,7 +74,22 @@ class BinarySearchTree {
         queue.push(treeNode.right);
       };
     }
+  }
 
+  getMinVal() {
+    if (this.left) {
+      return this.left.getMinVal();
+    } else {
+      return this.value;
+    }
+  }
+
+  getMaxVal() {
+    if (this.right) {
+      return this.right.getMaxVal();
+    } else {
+      return this.value;
+    }
   }
 }
 
@@ -92,7 +107,5 @@ bst.insert(85);
 bst.insert(105);
 bst.insert(10);
 
-const log = function (node) {
-  console.log(node.value)
-}
-bst.breadthFirstTraversal(log)
+console.log(bst.getMinVal());
+console.log(bst.getMaxVal())
