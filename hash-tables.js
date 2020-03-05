@@ -48,6 +48,18 @@ class HashTable {
     }
     return null;
   }
+
+  retrieveAll() {
+    const allNodes = [];
+    for (let bucket of this.buckets) {
+      let currentNode = bucket;
+      while (currentNode) {
+        allNodes.push(currentNode);
+        currentNode = currentNode.next;
+      };
+    }
+    return allNodes;
+  }
 }
 
 class HashNode {
@@ -64,5 +76,7 @@ myHT.insert('Megan', 'megan@gmail.com');
 myHT.insert('Dane', 'dane@yahoo.com');
 myHT.insert('Dane', 'dane@gmail.com');
 myHT.insert('Dean', 'deanmachine@gmail.com')
+myHT.insert('Joe', 'joemama@outlook.com');
+myHT.insert('Samantha', 'sam@twitter.com');
 
-console.log(myHT.buckets[16]);
+console.log(myHT.retrieveAll());
